@@ -1,0 +1,41 @@
+%sh
+ls data
+
+%spark 
+spark
+.read
+.option("header", "true")
+.option("delimiter", ",")
+.option("inferSchema", "true")
+.csv("data/amazon.csv")
+.registerTempTable("amazon")
+
+%spark.sql
+select * from amazon where product_name like  '%hobby%'
+
+
+%spark
+z.angularBind("numberReviews",z.input("Enter Number of Reviews"))
+
+%spark
+println(z.angular("numberReviews"))
+
+%spark
+z.show(sqlContext.sql("""
+SELECT * FROM amazon WHERE number_of_reviews = """ + z.angular("numberReviews") + """
+"""
+))
+
+%spark.sql
+select * from amazon where number_of_reviews >= '${numberReviews}'
+
+%spark
+println("Hello "+z.textbox("name"))
+
+%spark
+println("Hello "+z.select("day", Seq(("1","mon"),("2","tue"),("3","wed"),("4","thurs"),("5","fri"),("6","sat"),("7","sun"))))
+
+%spark
+val options = Seq(("apple","Apple"), ("banana","Banana"), ("orange","Orange"))
+println("Hello "+z.checkbox("fruit", options).mkString(" and "))
+
