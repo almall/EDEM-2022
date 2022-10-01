@@ -1,3 +1,0 @@
-# SESION GIT
-
-hooooola
