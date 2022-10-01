@@ -1,0 +1,13 @@
+#Primer notebook
+
+def suma(a,b):
+
+ return a+b
+
+print(f'La suma da {suma(5,6)}')
+
+
+num1 = int(input("Dime un numero: "))
+num2 = int(input("Dime otro numero: "))
+suma = num1 + num2
+print(f'La suma da {suma}')
